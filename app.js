@@ -5,6 +5,7 @@ const responseHandler = require('./src/middleware/responseHandler');
 const encryptRoutes = require('./src/modules/encrypt/encryptRoute');
 const authRoutes = require('./src/modules/auth/authRoute');
 const jwtMiddleware = require('./src/modules/auth/jwt/jwtMiddleware');
+const producersRoutes = require('./src/modules/producers/producersRoute');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(responseHandler);
 
 app.use('/api/customers', customerRoutes);
 app.use('/api/encrypt', encryptRoutes);
+app.use('/api/producers', producersRoutes);
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000;

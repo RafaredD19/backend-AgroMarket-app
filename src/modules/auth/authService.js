@@ -10,13 +10,13 @@ const login = async (username, password) => {
     const [user] = await db.query('SELECT * FROM tb_user WHERE username = ?', [username]);
 
     if (user.length === 0) {
-      throw new Error('Invalid username or password');
+      throw new Error('Usuario o contraseña invalido');
     }
 
     // Desencriptar la contraseña almacenada y compararla con la proporcionada
     const decryptedPassword = CryptoJS.AES.decrypt(user[0].password, process.env.SECRET_KEY).toString(CryptoJS.enc.Utf8);
     if (decryptedPassword !== password) {
-      throw new Error('Invalid username or password');
+      throw new Error('Usuario o contraseña invalido');
     }
 
     // Generar el token JWT
