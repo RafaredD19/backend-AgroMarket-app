@@ -1,7 +1,8 @@
 const Joi = require('joi');
 
 const customerCreateModel = Joi.object({
-  user_id: Joi.number().required(),
+  username: Joi.string().required(),
+  password: Joi.string().required(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   bussinesName: Joi.string().optional(),
