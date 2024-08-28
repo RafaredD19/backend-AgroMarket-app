@@ -1,0 +1,78 @@
+
+CREATE TABLE tb_user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE tb_customer (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    bussinesName VARCHAR(255),
+    phone VARCHAR(255),
+    document VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES tb_user(id)
+);
+
+CREATE TABLE tb_producers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    name VARCHAR(255) NOT NULL,
+    bussinesName VARCHAR(255),
+    document VARCHAR(255),
+    phone VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES tb_user(id)
+);
+
+CREATE TABLE tb_category (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE tb_products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    category_id INT,
+    price VARCHAR(255) NOT NULL,
+    stock INT NOT NULL,
+    unitExtent VARCHAR(255) NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES tb_category(id)
+);
+
+CREATE TABLE tb_sales (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cliente_id INT,
+    amount VARCHAR(255) NOT NULL,
+    totalPrice VARCHAR(255) NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES tb_customer(id)
+);
+
+CREATE TABLE tb_voucher (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    path VARCHAR(255) NOT NULL,
+    sale_id INT,
+    FOREIGN KEY (sale_id) REFERENCES tb_sales(id)
+);
+
+CREATE TABLE tb_detailSale (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    sale_id INT,
+    voucher_id INT,
+    product_id INT,
+    unitPrice VARCHAR(255) NOT NULL,
+    igv VARCHAR(255) NOT NULL,
+    unitExtent VARCHAR(255) NOT NULL,
+    FOREIGN KEY (sale_id) REFERENCES tb_sales(id),
+    FOREIGN KEY (voucher_id) REFERENCES tb_voucher(id),
+    FOREIGN KEY (product_id) REFERENCES tb_products(id)
+);
+
+CREATE TABLE tb_image (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES tb_products(id)
+);
