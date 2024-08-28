@@ -1,6 +1,7 @@
 # Esto es un Backend Hecho con Express
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png" alt="Logo de Express" style="width: 100%; height: auto;">
+<img src="https://expressjs.com/images/express-facebook-share.png" alt="Logo de Express" style="width: 100%; height: auto;">
+
 
 ## Descripción
 
